@@ -68,7 +68,7 @@ class Matriz{
             }
             System.out.println("");
         }
-        System.out.println("\n0 = ["+this.linha+","+this.coluna+"]");
+        System.out.println("\n0 = ["+this.linha+","+this.coluna+"]\n");
     }
     
     public void inicializa(){
