@@ -4,7 +4,8 @@ class Cromossomo:
     """
     valor : str
     aptidao : int
-    def __init__(self,valor,estado_final):
+    porcentagem_aptidao: int
+    def __init__(self,valor:str,estado_final:str):
         """
         Construtor que recebe um valor/palavra qualquer e a palavra final, calculando o fitness desse indivíduo (valor/palavra)
         param valor:str palavra,valor ou estado do indivíduo
@@ -26,29 +27,41 @@ class Cromossomo:
         for i,v in enumerate(estado_final):
             if v in self.valor:
                 nota += 5
-            if i == self.valor.index(v):
-                nota += 50
+                if i == self.valor.index(v):
+                    nota += 50
         return nota
 
-    def __str__(self):
-        return 'Valor: %s - %s' % (self.valor,self.aptidao)
+    # def __str__(self):
+    #     return 'Valor: %s - %s - %s' % (self.valor,self.aptidao, self.porcentagem_aptidao)
 
+    # def __eq__(self, other):
+    #     if type(other) != type(self):
+    #         return False
+    #     return self.valor == other.valor
+
+    # def __lt__ (self, other):
+    #     if self.aptidao == other.aptidao:
+    #         return self.aptidao < other.aptidao
+    #     return self.a < other.b
+
+    # def __gt__ (self, other):
+    #     return other.__lt__(self)
+
+    # def __eq__ (self, other):
+    #     return self.a == other.b and self.b == other.b
+
+    # def __ne__ (self, other):
+    #     return not self.__eq__(other)
+    
     def __eq__(self, other):
-        if type(other) != type(self):
-            return False
-        return self.valor == other.valor
-
-    def __lt__ (self, other):
-        if self.aptidao == other.aptidao:
-            return self.b < other.b
-        return self.a < other.b
-
-    def __gt__ (self, other):
-        return other.__lt__(self)
-
-    def __eq__ (self, other):
-        return self.a == other.b and self.b == other.b
-
-    def __ne__ (self, other):
-        return not self.__eq__(other)
+        if isinstance(other, Cromossomo):
+            return self.valor == other.valor
+        return False
+    
+    def __gt__(self, other):
+        return self.aptidao <= other.aptidao
+    
+    def __str__(self):
+        return f"valor= {self.valor}, aptidao= {self.aptidao}"
+        # return "valor=" + str(self.valor) + ", aptidao=" + str(self.aptidao )
 
